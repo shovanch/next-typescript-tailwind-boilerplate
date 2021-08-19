@@ -2,15 +2,16 @@
   "extends": [
     "next",
     "next/core-web-vitals",
-    "eslint:all",
-    "plugin:react/all",
-    "plugin:import/errors",
-    "plugin:import/warnings",
+    "airbnb",
     "plugin:@typescript-eslint/eslint-recommended",
-    "plugin:@typescript-eslint/recommended"
+    "plugin:@typescript-eslint/recommended",
+    "plugin:react/recommended",
+    "prettier",
+    "plugin:prettier/recommended"
   ],
   "plugins": [
     "prettier",
+    "react",
     "react-hooks",
     "@typescript-eslint",
     "testing-library"
@@ -79,20 +80,13 @@
     "react/jsx-one-expression-per-line": 0,
     "react/jsx-max-depth": 0,
     "react/jsx-newline": 0,
-    "react/jsx-props-no-spreading": 0
+    "react/jsx-props-no-spreading": 0,
+    "import/extensions": "off"
   },
   "ignorePatterns": ["node_modules/", ".next/"],
   "settings": {
     "import/resolver": {
-      "alias": [
-        ["@/components", "./components"],
-        ["@/utils", "./utils"],
-        ["@/contexts", "./contexts"],
-        ["@/services", "./services"],
-        ["@/styles", "./styles"],
-        ["@/shared", "./shared"],
-        ["@/modules", "./modules"]
-      ]
+      "alias": [["@", "./"]]
     }
   }
 }
