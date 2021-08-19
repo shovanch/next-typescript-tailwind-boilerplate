@@ -5,8 +5,18 @@
     "eslint:all",
     "plugin:react/all",
     "plugin:import/errors",
-    "plugin:import/warnings"
+    "plugin:import/warnings",
+    "plugin:@typescript-eslint/eslint-recommended",
+    "plugin:@typescript-eslint/recommended"
   ],
+  "plugins": [
+    "prettier",
+    "react-hooks",
+    "@typescript-eslint",
+    "testing-library"
+  ],
+  "parser": "@typescript-eslint/parser",
+
   "env": {
     "browser": true,
     "es2020": true,
@@ -19,10 +29,20 @@
       "jsx": true
     }
   },
+  "overrides": [
+    {
+      // 3) Now we enable eslint-plugin-testing-library rules or preset only for matching files!
+      "files": [
+        "**/__tests__/**/*.[jt]s?(x)",
+        "**/?(*.)+(spec|test).[jt]s?(x)"
+      ],
+      "extends": ["plugin:testing-library/react"]
+    }
+  ],
   "rules": {
     "indent": ["error", 2],
-    "quotes": ["error", "single"],
-    "semi": ["error", "never"],
+    // "quotes": ["error", "single"],
+    // "semi": ["error", "never"],
     "func-style": 0,
     "max-len": 0,
     "no-magic-numbers": 0,
@@ -63,15 +83,16 @@
   },
   "ignorePatterns": ["node_modules/", ".next/"],
   "settings": {
-  "import/resolver": {
-    "alias": [
+    "import/resolver": {
+      "alias": [
         ["@/components", "./components"],
         ["@/utils", "./utils"],
         ["@/contexts", "./contexts"],
         ["@/services", "./services"],
-        ["@/styles", "./styles"]
-        ["@/shared", "./shared"]
+        ["@/styles", "./styles"],
+        ["@/shared", "./shared"],
         ["@/modules", "./modules"]
-    ]
+      ]
+    }
   }
 }

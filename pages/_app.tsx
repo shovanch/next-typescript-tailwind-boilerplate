@@ -1,7 +1,11 @@
 import "@/shared/styles/globals.css";
+import { TWResponsiveIndicator } from "@/shared/components";
 
-function MyApp({ Component, pageProps }) {
-  return <Component {...pageProps} />;
+export default function MyApp({ Component, pageProps }) {
+  return (
+    <>
+      <TWResponsiveIndicator />
+      <Component {...pageProps} />
+    </>
+  );
 }
-
-export default MyApp;

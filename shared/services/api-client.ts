@@ -9,6 +9,7 @@ api.interceptors.request.use((config: AxiosRequestConfig) => {
   config.headers = {
     "Content-Type": "application/json",
   };
+
   return config;
 });
 
@@ -26,6 +27,7 @@ export const handleQuery = async ({
       url: `${API_ENDPOINT}${resourceUrl}`,
       ...(queryParams && { params: { ...queryParams } }), // Pass params if there's query object passed
     });
+
     return Promise.resolve(response.data);
   } catch (error) {
     return Promise.reject(error.response);
@@ -43,7 +45,7 @@ export const handleMutation = async ({
   resourceUrl: string;
   method: MutationMethods;
   reqBody: any;
-}) => {
+}): Promise<any> => {
   // Check if the passed method: POST, PUT, PATCH, DELETE
   if (!["POST", "PUT", "DELETE", "PATCH"].includes(method)) {
     return Promise.reject(new Error("Pass a valid method"));
@@ -55,6 +57,7 @@ export const handleMutation = async ({
       url: `${API_ENDPOINT}${resourceUrl}/`,
       ...(reqBody && { data: reqBody }),
     });
+
     return Promise.resolve(response.data);
   } catch (error) {
     return Promise.reject(error.response);
