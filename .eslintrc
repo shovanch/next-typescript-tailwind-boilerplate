@@ -2,7 +2,7 @@
   "extends": [
     "next",
     "next/core-web-vitals",
-    "airbnb",
+    "airbnb-typescript",
     "plugin:@typescript-eslint/eslint-recommended",
     "plugin:@typescript-eslint/recommended",
     "plugin:react/recommended",
@@ -25,6 +25,7 @@
     "jest": true
   },
   "parserOptions": {
+    "project": "./tsconfig.json",
     "sourceType": "module",
     "ecmaFeatures": {
       "jsx": true
@@ -81,12 +82,24 @@
     "react/jsx-max-depth": 0,
     "react/jsx-newline": 0,
     "react/jsx-props-no-spreading": 0,
-    "import/extensions": "off"
+    "import/extensions": [
+      "error",
+      "ignorePackages",
+      {
+        "js": "never",
+        "jsx": "never",
+        "ts": "never",
+        "tsx": "never"
+      }
+    ]
   },
   "ignorePatterns": ["node_modules/", ".next/"],
   "settings": {
     "import/resolver": {
-      "alias": [["@", "./"]]
+      "alias": {
+        "map": [["@", "./"]],
+        "extensions": [".ts", ".js", ".jsx", ".json", ".tsx"]
+      }
     }
   }
 }

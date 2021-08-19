@@ -6,9 +6,7 @@ import { render } from "@testing-library/react";
 
 // const customRender = (ui, options) =>
 //   render(ui, { wrapper: ProviderWrappers, ...options });
-const customRender = (ui, options) =>
-  render(ui);
-
+const customRender = (ui) => render(ui);
 
 // re-export everything
 export * from "@testing-library/react";
