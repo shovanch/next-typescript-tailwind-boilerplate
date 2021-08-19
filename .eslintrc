@@ -61,5 +61,15 @@
     "react/jsx-newline": 0,
     "react/jsx-props-no-spreading": 0
   },
-  "ignorePatterns": ["node_modules/", ".next/"]
+  "ignorePatterns": ["node_modules/", ".next/"],
+  "settings": {
+  "import/resolver": {
+    "alias": [
+        ["@/components", "./components"],
+        ["@/utils", "./utils"],
+        ["@/contexts", "./contexts"],
+        ["@/services", "./services"],
+        ["@/styles", "./styles"]
+    ]
+  }
 }
