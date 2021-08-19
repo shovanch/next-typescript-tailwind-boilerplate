@@ -1,6 +1,6 @@
 import Head from "next/head";
 
-import { Input } from "@/components/shared";
+import { Input } from "@/shared/components";
 
 export default function Home() {
   return (

@@ -1,7 +1,7 @@
 import React from "react";
-import { render, screen } from "@/utils/test-utils/test-setup";
+import { render, screen } from "@/shared/utils/test-utils/test-setup";
 import Index from "../pages/index";
-import {Input} from "@/components/shared";
+import {Input} from "@/shared/components";
 
 describe("App", () => {
   it("renders a heading", () => {
