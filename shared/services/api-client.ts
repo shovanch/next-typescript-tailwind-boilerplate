@@ -1,8 +1,8 @@
-import axios, { AxiosRequestConfig, AxiosResponse } from "axios";
-import { API_ENDPOINT } from "../../config";
+import axios, { AxiosRequestConfig, AxiosResponse, AxiosInstance } from "axios";
+import { APP_API_ENDPOINT } from "../../config";
 
 // Axios instance
-const api = axios.create();
+const api: AxiosInstance = axios.create();
 
 // Global interceptor for auth token
 api.interceptors.request.use((config: AxiosRequestConfig) => {
@@ -24,11 +24,11 @@ export const handleQuery = async ({
   try {
     const response: AxiosResponse = await api.request({
       method: "GET",
-      url: `${API_ENDPOINT}${resourceUrl}`,
+      url: `${APP_API_ENDPOINT}${resourceUrl}`,
       ...(queryParams && { params: { ...queryParams } }), // Pass params if there's query object passed
     });
 
-    return Promise.resolve(response.data);
+    return await Promise.resolve(response.data);
   } catch (error) {
     return Promise.reject(error.response);
   }
@@ -54,11 +54,11 @@ export const handleMutation = async ({
   try {
     const response: AxiosResponse = await api.request({
       method: `${method}`,
-      url: `${API_ENDPOINT}${resourceUrl}/`,
+      url: `${APP_API_ENDPOINT}${resourceUrl}/`,
       ...(reqBody && { data: reqBody }),
     });
 
-    return Promise.resolve(response.data);
+    return await Promise.resolve(response.data);
   } catch (error) {
     return Promise.reject(error.response);
   }

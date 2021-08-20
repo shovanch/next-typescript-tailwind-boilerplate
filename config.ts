@@ -1,3 +1,3 @@
-const API_ENDPOINT = process.env.API_ENDPOINT;
+const APP_API_ENDPOINT = process.env.APP_API_ENDPOINT;
 
-export { API_ENDPOINT };
+export { APP_API_ENDPOINT };

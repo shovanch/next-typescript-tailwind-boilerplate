@@ -19,7 +19,7 @@ module.exports = {
 
     "^@/(.*)$": "<rootDir>/$1",
     "^@/shared/(.*)$": "<rootDir>/shared/$1",
-    "^@/modules/(.*)$": "<rootDir>/modules/$1",
+    "^@/views/(.*)$": "<rootDir>/views/$1",
     // "^@/components/(.*)$": "<rootDir>/components/$1",
     // "^@/utils/(.*)$": "<rootDir>/utils/$1",
     // "^@/services/(.*)$": "<rootDir>/services/$1",

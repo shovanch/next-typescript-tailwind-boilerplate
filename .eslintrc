@@ -91,6 +91,13 @@
         "ts": "never",
         "tsx": "never"
       }
+    ],
+    "@typescript-eslint/no-inferrable-types": [
+      "error",
+      {
+        "ignoreParameters": false,
+        "ignoreProperties": false
+      }
     ]
   },
   "ignorePatterns": ["node_modules/", ".next/"],
