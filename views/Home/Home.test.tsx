@@ -1,9 +1,5 @@
-import {
-  render,
-  screen,
-  userEvent,
-} from "@/shared/utils/test-utils/test-setup";
-import { server, rest } from "@/shared/utils/test-utils/server";
+import { render, screen, userEvent } from "@/tests/utils/test-setup";
+import { server, rest } from "@/tests/utils/server";
 import { APP_API_ENDPOINT } from "@/config";
 
 import Index from "@/pages/index";

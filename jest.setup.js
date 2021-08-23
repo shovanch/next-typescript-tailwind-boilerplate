@@ -1,14 +1,27 @@
 import "@testing-library/jest-dom/extend-expect";
 import "@testing-library/jest-dom";
 import { setLogger } from "react-query";
+import { drop } from "@mswjs/data";
 
-import { server } from "@/shared/utils/test-utils/server";
+import { server } from "@/tests/utils/server";
+import { seedPosts } from "@/tests/utils/generate-data";
+import { db } from "@/tests/utils/mock-db";
 
 // Establish API mocking before all tests.
 beforeAll(() => server.listen());
+
+// Seed the mockDB before each test
+beforeEach(() => seedPosts());
+
 // Reset any request handlers that we may add during the tests,
 // so they don't affect other tests.
-afterEach(() => server.resetHandlers());
+afterEach(() => {
+  server.resetHandlers();
+
+  // drop the db after each test, to keep th test state clean
+  drop(db);
+});
+
 // Clean up after the tests are finished.
 afterAll(() => server.close());
 
