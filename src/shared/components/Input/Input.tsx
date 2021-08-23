@@ -1,12 +1,12 @@
-import { AxiosResponse } from "axios";
-import { useMutation, useQuery } from "react-query";
+import { useQuery } from "react-query";
 
-import { fetchPosts, fetchPost } from "@/shared/services";
-import { useAuthUser } from "@/shared/contexts/useState.context";
 import { useInput } from "@/shared/contexts/dispatch.context";
+import { useAuthUser } from "@/shared/contexts/useState.context";
+import { fetchAuthUser } from "@/shared/services";
+import { User } from "@/types/api";
 
 export default function Input() {
-  const postResult = useQuery<Post, AxiosResponse>("post", () => fetchPost());
+  const postResult = useQuery<User, API.Error>("post", () => fetchAuthUser());
 
   // const postListResult = useQuery("postList", () => fetchPosts({ id: 10 }));
 
@@ -53,7 +53,7 @@ export default function Input() {
 
       {postResult.error && <p>{postResult.error.status}</p>}
 
-      {postResult.data && <p className="mt-8">{postResult.data.title}</p>}
+      {postResult.data && <p className="mt-8">{postResult.data.first_name}</p>}
 
       <h1 className="mt-8">スタビズとは</h1>
     </div>

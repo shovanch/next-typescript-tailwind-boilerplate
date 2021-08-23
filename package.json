@@ -8,10 +8,11 @@
     "lint.fix": "next lint --fix",
     "test": "jest --env=jsdom --watch",
     "test:e2e": "playwright test",
-    "eslint-fix": "eslint --fix \"*.{js,jsx,ts,tsx}\"",
+    "eslint-fix": "eslint --fix \"src/**/*.{js,jsx,ts,tsx}\"",
     "analyze": "ANALYZE=true next build",
     "analyze:server": "BUNDLE_ANALYZE=server next build",
-    "analyze:browser": "BUNDLE_ANALYZE=browser next build"
+    "analyze:browser": "BUNDLE_ANALYZE=browser next build",
+    "generate:api": "npx openapi-typescript-codegen --input ./openapi.json --output ./src/types/api --client fetch --useOptions --useUnionTypes --exportCore false"
   },
   "dependencies": {
     "@fontsource/noto-sans-jp": "^4.5.0",
@@ -66,8 +67,9 @@
     "typescript": "^4.3.5"
   },
   "lint-staged": {
-    "*.{js,jsx,ts,tsx,json,css}": [
-      "prettier --write"
+    "src/**/*.{js,jsx,ts,tsx,json,css}": [
+      "prettier --write",
+      "eslint --fix"
     ]
   },
   "husky": {

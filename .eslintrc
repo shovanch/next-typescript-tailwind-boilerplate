@@ -14,7 +14,8 @@
     "react",
     "react-hooks",
     "@typescript-eslint",
-    "testing-library"
+    "testing-library",
+    "import"
   ],
   "parser": "@typescript-eslint/parser",
 
@@ -48,7 +49,6 @@
     }
   ],
   "rules": {
-    "indent": ["error", 2],
     "func-style": 0,
     "max-len": 0,
     "no-magic-numbers": 0,
@@ -86,6 +86,14 @@
     "react/jsx-max-depth": 0,
     "react/jsx-newline": 0,
     "react/jsx-props-no-spreading": 0,
+    "@typescript-eslint/no-inferrable-types": [
+      "error",
+      {
+        "ignoreParameters": false,
+        "ignoreProperties": false
+      }
+    ],
+    "import/order": ["error", { "newlines-between": "always" }],
     "import/extensions": [
       "error",
       "ignorePackages",
@@ -96,12 +104,9 @@
         "tsx": "never"
       }
     ],
-    "@typescript-eslint/no-inferrable-types": [
+    "import/no-extraneous-dependencies": [
       "error",
-      {
-        "ignoreParameters": false,
-        "ignoreProperties": false
-      }
+      { "devDependencies": ["**/*.test.js", "./src/tests/**/*"] } // Skip test related files
     ]
   },
   "ignorePatterns": ["node_modules/", ".next/"],

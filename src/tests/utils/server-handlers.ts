@@ -2,10 +2,10 @@
 import faker from "faker";
 import { rest } from "msw";
 
+import { db } from "./mock-db";
+
 import { APP_API_ENDPOINT } from "@/config";
 import { FAKER_SEED } from "@/shared/utils/constants";
-
-import { db } from "./mock-db";
 
 // (Optional) Seed `faker` to ensure reproducible
 // random values of model properties.

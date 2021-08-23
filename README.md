@@ -1,4 +1,4 @@
-## NextJs with Typescript, Tailwind
+#
 
 ## Base Folder Structure
 
@@ -61,9 +61,12 @@
 
 ```
 
+## Tech Used
+
+- NextJS with Typescript, Tailwind
 - Uses `axios` for api-calls, and `react-query` for remote data-state and cache
 
-### Aliases
+## File-import Aliases
 
 Aliases are for easier imports. Aliases can be used to import like `import { something } from '@/shared/components/....'`,
 
@@ -71,9 +74,9 @@ Aliases are for easier imports. Aliases can be used to import like `import { som
 
 **Default aliases setup**
 
-- `@/` for `./`: from root
+- `@/` for `./src`: from root
 
-### Test
+## Test
 
 - Uses `react-testing-library` with `jest` as test-runner
 - `msw` to mock api calls
@@ -81,4 +84,10 @@ Aliases are for easier imports. Aliases can be used to import like `import { som
 - Test-utils functions and data are in `src/tests/utils*`
 - Uses `playwright/test` for e2e tests
 
-## Features
+## Generate Backend types
+
+**If the backend has proper swagger data models defined**, we can generate the types automatically [openapi-typescript-codegen](https://www.npmjs.com/package/openapi-typescript-codegen)
+
+Download the openapi json or yaml file of the apiDocs, check the `generate:api` script in `package.json`, it will show the parameters that are needed
+
+# Features

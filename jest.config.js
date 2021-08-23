@@ -18,8 +18,6 @@ module.exports = {
     "^.+\\.(jpg|jpeg|png|gif|webp|svg)$": `<rootDir>/__mocks__/fileMock.js`,
 
     "^@/(.*)$": "<rootDir>/src/$1",
-    "^@/shared/(.*)$": "<rootDir>/src/shared/$1",
-    "^@/views/(.*)$": "<rootDir>/src/views/$1",
   },
   testPathIgnorePatterns: [
     "<rootDir>/node_modules/",

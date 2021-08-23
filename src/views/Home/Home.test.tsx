@@ -1,7 +1,6 @@
 import { render, screen, userEvent } from "@/tests/utils/test-setup";
 import { server, rest } from "@/tests/utils/server";
 import { APP_API_ENDPOINT } from "@/config";
-
 import Index from "@/pages/index";
 
 describe("App", () => {

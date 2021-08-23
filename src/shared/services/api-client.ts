@@ -11,15 +11,14 @@ function isAxiosError(candidate: {
 }
 
 // Axios instance
-const api: AxiosInstance = axios.create();
+const api: AxiosInstance = axios.create({
+  headers: {
+    "Content-Type": "application/json",
+  },
+});
 
 // Global interceptor for auth token
 api.interceptors.request.use((config: AxiosRequestConfig) => {
-  // eslint-disable-next-line no-param-reassign
-  config.headers = {
-    "Content-Type": "application/json",
-  };
-
   return config;
 });
 
