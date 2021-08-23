@@ -3,7 +3,7 @@ import { devices } from "playwright";
 
 const config: PlaywrightTestConfig = {
   // Look for test files in the "tests" directory, relative to this configuration file
-  testDir: "tests/e2e",
+  testDir: "src/tests/e2e",
 
   // Store test screenshot or videos here, relative to the testDir path
   outputDir: "../test-results",

@@ -15,7 +15,6 @@ export const handlers = [
   // Retrieve a single user from the database by ID.
   rest.get(`${APP_API_ENDPOINT}/posts/1s`, (req, res, ctx) => {
     const count = db.post.count();
-    console.log("file: server-handlers.ts ~ line 22 ~ rest.get ~ count", count);
 
     const post = db.post.findFirst({
       where: {

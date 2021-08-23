@@ -108,7 +108,7 @@
   "settings": {
     "import/resolver": {
       "alias": {
-        "map": [["@", "./"]],
+        "map": [["@", "./src/"]],
         "extensions": [".ts", ".js", ".jsx", ".json", ".tsx"]
       }
     }
