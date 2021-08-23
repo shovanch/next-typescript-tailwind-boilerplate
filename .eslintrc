@@ -24,6 +24,12 @@
     "node": true,
     "jest": true
   },
+  "globals": {
+    "page": true,
+    "browser": true,
+    "context": true,
+    "jestPuppeteer": true
+  },
   "parserOptions": {
     "project": "./tsconfig.json",
     "sourceType": "module",
@@ -33,7 +39,7 @@
   },
   "overrides": [
     {
-      // 3) Now we enable eslint-plugin-testing-library rules or preset only for matching files!
+      // We enable eslint-plugin-testing-library rules or preset only for matching files!
       "files": [
         "**/__tests__/**/*.[jt]s?(x)",
         "**/?(*.)+(spec|test).[jt]s?(x)"
@@ -43,8 +49,6 @@
   ],
   "rules": {
     "indent": ["error", 2],
-    // "quotes": ["error", "single"],
-    // "semi": ["error", "never"],
     "func-style": 0,
     "max-len": 0,
     "no-magic-numbers": 0,

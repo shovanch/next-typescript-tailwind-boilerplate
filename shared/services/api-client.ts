@@ -1,11 +1,21 @@
-import axios, { AxiosRequestConfig, AxiosResponse, AxiosInstance } from "axios";
+import axios, { AxiosRequestConfig, AxiosInstance, AxiosError } from "axios";
+
 import { APP_API_ENDPOINT } from "../../config";
+
+// https://typescript.tv/best-practices/error-ts1196-catch-clause-variable-type-annotation/#Type-Guards
+// Type guard with "type predicate"
+function isAxiosError(candidate: {
+  isAxiosError: boolean;
+}): candidate is AxiosError {
+  return candidate.isAxiosError === true;
+}
 
 // Axios instance
 const api: AxiosInstance = axios.create();
 
 // Global interceptor for auth token
 api.interceptors.request.use((config: AxiosRequestConfig) => {
+  // eslint-disable-next-line no-param-reassign
   config.headers = {
     "Content-Type": "application/json",
   };
@@ -14,52 +24,53 @@ api.interceptors.request.use((config: AxiosRequestConfig) => {
 });
 
 /* ---- Base function to get data ---- */
-export const handleQuery = async ({
-  resourceUrl,
-  queryParams,
-}: {
+export const handleQuery = async <T, U>(config: {
   resourceUrl: string;
-  queryParams?: any;
-}): Promise<any> => {
+  queryParams?: U;
+}): Promise<T> => {
   try {
-    const response: AxiosResponse = await api.request({
+    const response = await api.request({
       method: "GET",
-      url: `${APP_API_ENDPOINT}${resourceUrl}`,
-      ...(queryParams && { params: { ...queryParams } }), // Pass params if there's query object passed
+      url: `${APP_API_ENDPOINT}${config.resourceUrl}`,
+      ...(config.queryParams && { params: { ...config.queryParams } }), // Pass params if there's query object passed
     });
 
     return await Promise.resolve(response.data);
   } catch (error) {
-    return Promise.reject(error.response);
+    if (isAxiosError(error)) {
+      return await Promise.reject(error.response);
+    }
+
+    return await Promise.reject(error);
   }
 };
 
 /* ---- Base function for Data mutation requests -> POST, PUT, PATCH, DELETE ---- */
 type MutationMethods = "POST" | "PUT" | "PATCH" | "DELETE";
 
-export const handleMutation = async ({
-  resourceUrl,
-  method,
-  reqBody,
-}: {
+export const handleMutation = async <T, U>(config: {
   resourceUrl: string;
   method: MutationMethods;
-  reqBody: any;
-}): Promise<any> => {
+  reqBody?: U;
+}): Promise<T> => {
   // Check if the passed method: POST, PUT, PATCH, DELETE
-  if (!["POST", "PUT", "DELETE", "PATCH"].includes(method)) {
+  if (!["POST", "PUT", "DELETE", "PATCH"].includes(config.method)) {
     return Promise.reject(new Error("Pass a valid method"));
   }
 
   try {
-    const response: AxiosResponse = await api.request({
-      method: `${method}`,
-      url: `${APP_API_ENDPOINT}${resourceUrl}/`,
-      ...(reqBody && { data: reqBody }),
+    const response = await api.request({
+      method: `${config.method}`,
+      url: `${APP_API_ENDPOINT}${config.resourceUrl}/`,
+      ...(config.reqBody && { data: config.reqBody }),
     });
 
     return await Promise.resolve(response.data);
   } catch (error) {
-    return Promise.reject(error.response);
+    if (isAxiosError(error)) {
+      return await Promise.reject(error.response);
+    }
+
+    return await Promise.reject(error);
   }
 };

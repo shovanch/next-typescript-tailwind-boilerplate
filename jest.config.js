@@ -20,13 +20,12 @@ module.exports = {
     "^@/(.*)$": "<rootDir>/$1",
     "^@/shared/(.*)$": "<rootDir>/shared/$1",
     "^@/views/(.*)$": "<rootDir>/views/$1",
-    // "^@/components/(.*)$": "<rootDir>/components/$1",
-    // "^@/utils/(.*)$": "<rootDir>/utils/$1",
-    // "^@/services/(.*)$": "<rootDir>/services/$1",
-    // "^@/contexts/(.*)$": "<rootDir>/contexts/$1",
-    // "^@/styles/(.*)$": "<rootDir>/styles/$1",
   },
-  testPathIgnorePatterns: ["<rootDir>/node_modules/", "<rootDir>/.next/"],
+  testPathIgnorePatterns: [
+    "<rootDir>/node_modules/",
+    "<rootDir>/.next/",
+    "./*\\e2e\\.test\\.(js|jsx|ts|tsx)$",
+  ],
   transform: {
     // Use babel-jest to transpile tests with the next/babel preset
     // https://jestjs.io/docs/configuration#transform-objectstring-pathtotransformer--pathtotransformer-object
@@ -36,5 +35,7 @@ module.exports = {
     "/node_modules/",
     "^.+\\.module\\.(css|sass|scss)$",
   ],
+
+  globalSetup: "<rootDir>/setup-test-env.js",
   setupFilesAfterEnv: ["<rootDir>/jest.setup.js"],
 };
