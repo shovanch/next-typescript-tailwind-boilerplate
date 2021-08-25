@@ -5,10 +5,12 @@ import { factory, primaryKey } from "@mswjs/data";
 
 export const db = factory({
   // Create a "user" model,
-  post: {
+  user: {
     id: primaryKey(faker.datatype.string),
-    userId: faker.datatype.string,
-    title: faker.datatype.string,
-    body: faker.datatype.string,
+    first_name: faker.datatype.string,
+    last_name: faker.datatype.string,
+    email: faker.datatype.string,
+    type: faker.datatype.string,
+    created_at: faker.datatype.datetime,
   },
 });

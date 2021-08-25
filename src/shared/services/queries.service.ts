@@ -1,4 +1,4 @@
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
+/* eslint-disable */
 import { handleQuery, handleMutation } from "./api-client";
 
 import { User } from "@/types/api";
@@ -7,18 +7,7 @@ import { User } from "@/types/api";
 // We're duplicating the Error result generics in useQuery call to type the Error
 // Till TS allows skipping generics
 
-// export const fetchAuthUser = async (queryParams: Partial<RequestParams>) =>
-//   handleQuery<Response, Partial<RequestParams>>({
-//     resourceUrl: `/user`,
-//     queryParams,
-//   });
 export const fetchAuthUser = async (queryParams?: Partial<API.QueryParams>) =>
-  handleQuery<User, Partial<API.QueryParams>>({
-    resourceUrl: `/user`,
-    queryParams,
-  });
-
-export const fetchAuthUsers = async (queryParams: Partial<API.QueryParams>) =>
   handleQuery<User, Partial<API.QueryParams>>({
     resourceUrl: `/user`,
     queryParams,

@@ -3,11 +3,11 @@ import Head from "next/head";
 
 import { Input } from "@/shared/components";
 
-export default function Home() {
+export default function Home(): JSX.Element {
   return (
     <>
       <Head>
-        <title>StaBiz</title>
+        <title>TEST DEV</title>
       </Head>
       <div className="flex flex-col items-center justify-center py-2 min-h-screen">
         <Image src="/images/stabiz-logo.png" alt="me" height="32" width="150" />
@@ -16,3 +16,5 @@ export default function Home() {
     </>
   );
 }
+
+Home.publicRoute = true;

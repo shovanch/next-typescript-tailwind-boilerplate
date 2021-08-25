@@ -3,4 +3,4 @@
 /**
  * Reusable components project wide, which can be a npm package
  */
-export { default as TWResponsiveIndicator } from "../lib/TWResponsiveIndicator/TWResponsiveIndicator";
+export { default as TWResponsiveIndicator } from "./TWResponsiveIndicator/TWResponsiveIndicator";

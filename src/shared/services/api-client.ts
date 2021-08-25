@@ -1,6 +1,9 @@
 import axios, { AxiosRequestConfig, AxiosInstance, AxiosError } from "axios";
+import Cookies from "js-cookie";
 
 import { APP_API_ENDPOINT } from "../../config";
+
+import { AUTH_TOKEN_COOKIE } from "@/shared/utils/constants";
 
 // https://typescript.tv/best-practices/error-ts1196-catch-clause-variable-type-annotation/#Type-Guards
 // Type guard with "type predicate"
@@ -19,6 +22,14 @@ const api: AxiosInstance = axios.create({
 
 // Global interceptor for auth token
 api.interceptors.request.use((config: AxiosRequestConfig) => {
+  // Get the authToken cookie, it's set when user logs in or signs up
+  const authToken = Cookies.get(AUTH_TOKEN_COOKIE);
+
+  if (authToken) {
+    // eslint-disable-next-line no-param-reassign
+    config.headers.Authorization = `Bearer ${authToken}`;
+  }
+
   return config;
 });
 

@@ -1,17 +1,18 @@
+/* eslint-disable */
 import "@testing-library/jest-dom/extend-expect";
 import "@testing-library/jest-dom";
 import { setLogger } from "react-query";
 import { drop } from "@mswjs/data";
 
 import { server } from "@/tests/utils/server";
-import { seedPosts } from "@/tests/utils/generate-data";
+import { seedUser } from "@/tests/utils/generate-data";
 import { db } from "@/tests/utils/mock-db";
 
 // Establish API mocking before all tests.
 beforeAll(() => server.listen());
 
 // Seed the mockDB before each test
-beforeEach(() => seedPosts());
+beforeEach(() => seedUser());
 
 // Reset any request handlers that we may add during the tests,
 // so they don't affect other tests.

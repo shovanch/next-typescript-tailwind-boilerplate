@@ -86,6 +86,11 @@
     "react/jsx-max-depth": 0,
     "react/jsx-newline": 0,
     "react/jsx-props-no-spreading": 0,
+    "no-use-before-define": "off",
+    "@typescript-eslint/no-use-before-define": [
+      "error",
+      { "functions": false }
+    ],
     "@typescript-eslint/no-inferrable-types": [
       "error",
       {
@@ -106,7 +111,13 @@
     ],
     "import/no-extraneous-dependencies": [
       "error",
-      { "devDependencies": ["**/*.test.js", "./src/tests/**/*"] } // Skip test related files
+      {
+        "devDependencies": [
+          "**/*.test.@(js|jsx|ts|tsx)",
+          "./src/tests/**/*",
+          "**/*/*.stories.@(js|jsx|ts|tsx)"
+        ]
+      } // Skip test, stories related files from dependecy checks
     ]
   },
   "ignorePatterns": ["node_modules/", ".next/"],

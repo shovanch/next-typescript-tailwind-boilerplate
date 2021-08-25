@@ -38,7 +38,7 @@ describe("App", () => {
 
   it("query error works", async () => {
     server.use(
-      rest.get(`${APP_API_ENDPOINT}/posts/1s`, (req, res, ctx) =>
+      rest.get(`${APP_API_ENDPOINT}/user`, (req, res, ctx) =>
         res(ctx.status(404), ctx.json({}))
       )
     );

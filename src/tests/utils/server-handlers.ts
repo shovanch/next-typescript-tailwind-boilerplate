@@ -14,11 +14,11 @@ faker.seed(FAKER_SEED);
 export const handlers = [
   // Retrieve a single user from the database by ID.
   rest.get(`${APP_API_ENDPOINT}/posts/1s`, (req, res, ctx) => {
-    const count = db.post.count();
+    const count = db.user.count();
 
-    const post = db.post.findFirst({
+    const post = db.user.findFirst({
       where: {
-        userId: {
+        id: {
           equals: "123",
         },
       },

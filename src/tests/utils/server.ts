@@ -6,7 +6,7 @@ import { handlers } from "./server-handlers";
 // const server = setupServer(...handlers);
 
 // User data-model handlers from msw where applicable
-const server = setupServer(...db.post.toHandlers("rest"), ...handlers);
+const server = setupServer(...db.user.toHandlers("rest"), ...handlers);
 
 export * from "msw";
 
