@@ -5,7 +5,7 @@
 import { createContext, useState, useContext, useEffect } from "react";
 import { useRouter } from "next/router";
 
-import { fetchUser } from "@/shared/services";
+import { fetchAuthUser } from "@/shared/services";
 
 type AppContextValue = {
   isAuthenticated: boolean;
@@ -30,7 +30,7 @@ export const AuthProvider = ({ children }: AuthProviderProps): JSX.Element => {
   useEffect(() => {
     async function loadAuthUser() {
       try {
-        const res = await fetchUser();
+        const res = await fetchAuthUser();
 
         if (res) {
           setUser(res?.data);

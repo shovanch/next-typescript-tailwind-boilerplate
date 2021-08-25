@@ -17,3 +17,7 @@ export type User = {
   type: string;
   created_at: Date;
 };
+
+export type UserResponse = {
+  data: User;
+};

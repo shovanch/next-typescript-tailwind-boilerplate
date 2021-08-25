@@ -1,14 +1,14 @@
 /* eslint-disable */
 import { handleQuery, handleMutation } from "./api-client";
 
-import { User } from "@/types/api";
+import { User, UserResponse } from "@/types/api";
 
 // https://github.com/microsoft/TypeScript/issues/10571
 // We're duplicating the Error result generics in useQuery call to type the Error
 // Till TS allows skipping generics
 
 export const fetchAuthUser = async (queryParams?: Partial<API.QueryParams>) =>
-  handleQuery<User, Partial<API.QueryParams>>({
+  handleQuery<UserResponse, Partial<API.QueryParams>>({
     resourceUrl: `/user`,
     queryParams,
   });

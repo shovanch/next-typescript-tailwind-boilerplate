@@ -4,10 +4,10 @@ import { useMutation, useQuery } from "react-query";
 import { fetchAuthUser } from "@/shared/services";
 import { useAuthUser } from "@/shared/contexts/useState.context";
 import { useInput } from "@/shared/contexts/dispatch.context";
-import { User } from "@/types/api";
+import { UserResponse } from "@/types/api";
 
-export default function Input() {
-  const postResult = useQuery<User, AxiosResponse>("post", () =>
+export default function Input(): JSX.Element {
+  const postResult = useQuery<UserResponse, AxiosResponse>("post", () =>
     fetchAuthUser()
   );
 
@@ -52,7 +52,7 @@ export default function Input() {
 
       {postResult.error && <p>{postResult.error.status}</p>}
 
-      {postResult.data && <p className="mt-8">{postResult.data.email}</p>}
+      {postResult.data && <p className="mt-8">{postResult.data.data.email}</p>}
 
       <h1 className="mt-8">スタビズとは</h1>
     </div>
