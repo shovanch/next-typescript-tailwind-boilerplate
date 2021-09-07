@@ -1,4 +1,3 @@
-import { AxiosResponse } from "axios";
 import { useMutation, useQuery } from "react-query";
 
 import { fetchAuthUser } from "@/shared/services";
@@ -7,9 +6,7 @@ import { useInput } from "@/shared/contexts/dispatch.context";
 import { UserResponse } from "@/types/api";
 
 export default function Input(): JSX.Element {
-  const postResult = useQuery<UserResponse, AxiosResponse>("post", () =>
-    fetchAuthUser()
-  );
+  const postResult = useQuery<UserResponse>("post", () => fetchAuthUser());
 
   // const loginMutation = useMutation(
   //   (data: RequestBody) => createAuthUser(data),
@@ -33,18 +30,18 @@ export default function Input(): JSX.Element {
       </button> */}
       <h1 data-testid="testing">heading</h1>
       <button
-        type="button"
         className="p-5 bg-blue-500"
-        onClick={() => setAuthUser({ name: "chatterjee" })}
         data-testid="useStateContext"
+        type="button"
+        onClick={() => setAuthUser({ name: "chatterjee" })}
       >
         {authUser.name}
       </button>
       <button
         className="p-5 bg-red-50"
+        data-testid="useReducerContext"
         type="button"
         onClick={() => dispatch({ type: "SET_INPUT_VALUE", payload: 1000 })}
-        data-testid="useReducerContext"
       >
         {state.inputValue}
       </button>
