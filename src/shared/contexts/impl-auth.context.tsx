@@ -43,10 +43,6 @@ type AppContextValue = {
 
 const AuthContext = createContext<AppContextValue | undefined>(undefined);
 
-/**
- * To remember the link user visited, but couldn't due to auth
- * we redirect them to that router after signing in
- */
 const redirectKey = "SIGN_IN_REDIRECT";
 
 const setRedirect = (redirect: string) => {

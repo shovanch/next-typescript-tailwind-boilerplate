@@ -71,6 +71,7 @@ module.exports = {
     "object-curly-spacing": ["error", "always"],
     "one-var": ["error", "never"],
     "no-use-before-define": 0,
+    "consistent-return": ["error", { treatUndefinedAsUnspecified: false }],
 
     // React
     "react/prop-types": 0,
@@ -93,6 +94,16 @@ module.exports = {
         ignoreCase: false,
         noSortAlphabetically: false,
         reservedFirst: true,
+      },
+    ],
+
+    // This is for children <a> tag under nextjs Link
+    "jsx-a11y/anchor-is-valid": [
+      "error",
+      {
+        components: ["Link"],
+        specialLink: ["hrefLeft", "hrefRight"],
+        aspects: ["invalidHref", "preferButton"],
       },
     ],
 
@@ -121,23 +132,26 @@ module.exports = {
     ],
 
     // Import
+    "import/prefer-default-export": 0,
     "import/order": [
       "error",
       {
         "newlines-between": "always",
         groups: [
+          "type",
           "builtin",
           "external",
           "internal",
           "parent",
           "sibling",
           "index",
-          "object",
         ],
         pathGroups: [
+          { pattern: "@/screens/**", group: "internal", position: "after" },
           {
             pattern: "@/**",
             group: "internal",
+            position: "before",
           },
         ],
       },
@@ -157,7 +171,7 @@ module.exports = {
       {
         // Skip test related files
         devDependencies: [
-          "**/*.test.js",
+          "**/*.test.@(js|jsx|ts|tsx)",
           "./src/tests/**/*",
           "**/*/*.stories.@(js|jsx|ts|tsx)",
         ],

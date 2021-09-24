@@ -15,13 +15,15 @@ const queryClient = new QueryClient({
 
 type AppProvidersProps = { children: React.ReactNode };
 
-function ReactQueryClientProvider({ children }: AppProvidersProps) {
+function ReactQueryClientProvider({
+  children,
+}: AppProvidersProps): JSX.Element {
   return (
     <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>
   );
 }
 
-function Providers({ children }: AppProvidersProps) {
+function Providers({ children }: AppProvidersProps): JSX.Element {
   return (
     <>
       <AuthUserProvider>
@@ -31,7 +33,7 @@ function Providers({ children }: AppProvidersProps) {
   );
 }
 
-function AppProviders({ children }: AppProvidersProps) {
+function AppProviders({ children }: AppProvidersProps): JSX.Element {
   return (
     <>
       <ReactQueryClientProvider>

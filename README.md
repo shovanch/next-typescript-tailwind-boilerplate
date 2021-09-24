@@ -25,20 +25,23 @@
   │    │    ├── /contexts
   │    │    │    ├── app-providers.tsx (encapsulates app-wide providers like ReactQueryClientProvider,ThemeProvider etc)
   │    │    ├── /utils (app-wide shareable things)
-  │    │    │    ├── utils.ts
-  │    │    │    ├── index.ts (re-exports the utils funcs files as needed)
+  │    │    │    ├── funcs/ (util functions based on approx type)
+  │    │    │    ├── ├── example.utils.ts (util functions based on approx type)
+  │    │    │    ├── ├── index.ts (re-exports the utils funcs files as needed)
+  │    │    │    ├── ...
   │    │    ├── /styles (app-wide global styles, component styles are scored there with CSS modules)
   │    │    │    ├── globals.css (all tailwind styles)
   │    │    │    ├── _app.global.scss (*if needed)
   │    │    │    ├── _variables.global.scss (*if needed, declare css variables)
   │    │    │    ├── index.scss (*if needed, bundles and exports the global styles to be imported in root index.js)
   │    ├── /screens (co-locates files that are used on a page only)
-  │    │    ├── /Page
+  │    │    ├── /page (corresponds to routes from /pages folder)
   │    │    │    ├── /components
-  │    │    │    │    ├── /PageComponent
-  │    │    │    ├── Page.tsx
-  │    │    │    ├── Page.test.tsx
-  │    │    │    ├── Page.module.scss
+  │    │    │    │    ├── /Component
+  │    │    │    │    │    ├── Component.tsx
+  │    │    │    │    │    ├── Component.test.tsx
+  │    │    │    │    │    ├── Component.module.scss
+  │    │    │    │    ├── index.ts (exports all the com )
   │    │    │    ├── page.service.ts
   │    │    │    ├── page.utils.ts
   │    ├── /pages (nextjs treats each page as route itself)
@@ -46,10 +49,9 @@
   │    │    ├── /e2e (end-to-end test-files)
   │    │    ├── /test-results (end-to-end test generated screenshots or videos)
   │    │    ├── /utils
+  │    │    │    ├── /mocks (mock data and handlers for test using msw)
   │    │    │    ├── test-setup.tsx (setup custom reusable wrapper for tests)
-  │    │    │    ├── mock-db.ts (mock database)
   │    │    │    ├── generate-data.ts (generate data for mock database)
-  │    │    │    ├── server-handlers.ts (mock route interceptors for msw)
   │    │    │    ├── server.ts (test mock server setup for msw)
   │    ├── /types (shareable types)
   │    ├── config.ts (exports the process.env variables)
@@ -93,6 +95,7 @@ Aliases are for easier imports. Aliases can be used to import like `import { som
 Download the openapi json or yaml file of the apiDocs, check the `generate:api` script in `package.json`, it will show the parameters that are needed
 
 # Features
+
 ### How authentication works
 
 `TODO`

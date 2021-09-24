@@ -1,9 +1,8 @@
-/* eslint-disable */
-
 import faker from "faker";
 
 import { FAKER_SEED } from "@/shared/utils/constants";
-import { db } from "./mock-db";
+
+import { db } from "./mocks/db";
 
 faker.seed(FAKER_SEED);
 

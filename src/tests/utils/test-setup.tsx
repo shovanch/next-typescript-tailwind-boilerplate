@@ -1,6 +1,8 @@
 import { render, RenderOptions } from "@testing-library/react";
 import { ComponentType, ReactElement } from "react";
 import { QueryClient, QueryClientProvider } from "react-query";
+import { RouterContext } from "next/dist/shared/lib/router-context";
+import { useRouter } from "next-router-mock";
 
 import { Providers } from "@/shared/contexts/app-providers";
 
@@ -13,7 +15,19 @@ const createTestQueryClient = () =>
     },
   });
 
-export function AllProviders({ children }: { children: React.ReactNode }) {
+// export const MockMemoryRouter = ({ children }): JSX.Element => {
+//   return (
+//     <RouterContext.Provider value={useRouter()}>
+//       {children}
+//     </RouterContext.Provider>
+//   );
+// };
+
+export function AllProviders({
+  children,
+}: {
+  children: React.ReactNode;
+}): JSX.Element {
   const testQueryClient = createTestQueryClient();
 
   return (
@@ -38,12 +52,10 @@ function wrappedRender(
   ui: ReactElement,
   options?: Omit<RenderOptions, "wrapper">
 ) {
-  const returns = render(ui, {
+  return render(ui, {
     wrapper: AllProviders as ComponentType,
     ...options,
   });
-
-  return returns;
 }
 
 // export function renderWithClient(ui: React.ReactElement) {

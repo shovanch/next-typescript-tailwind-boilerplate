@@ -1,5 +1,6 @@
 import "@fontsource/noto-sans-jp";
 import type { AppProps } from "next/app";
+
 import { NextPage } from "next";
 import NextNprogress from "nextjs-progressbar";
 
@@ -11,7 +12,7 @@ import { AuthProvider, AuthGuard } from "@/shared/contexts/auth.context";
 // Pages are by default, checked for protected
 // Ones with publicRoute true are public pages
 export type NextApplicationPage = NextPage & {
-  publicRoute?: boolean;
+  isPublicRoute?: boolean;
 };
 
 export default function MyApp(props: AppProps): JSX.Element {
@@ -23,17 +24,17 @@ export default function MyApp(props: AppProps): JSX.Element {
   return (
     <>
       <NextNprogress
+        showOnShallow
         color="#29D"
+        height={3}
+        options={{ showSpinner: false }}
         startPosition={0.3}
         stopDelayMs={200}
-        height={3}
-        showOnShallow
-        options={{ showSpinner: false }}
       />
       <AppProviders>
         <AuthProvider>
           <TWResponsiveIndicator />
-          {Component.publicRoute ? (
+          {Component.isPublicRoute ? (
             // public page
             <Component {...pageProps} />
           ) : (

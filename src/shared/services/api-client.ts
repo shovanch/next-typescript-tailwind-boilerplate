@@ -1,8 +1,7 @@
 import axios, { AxiosRequestConfig, AxiosInstance, AxiosError } from "axios";
 import Cookies from "js-cookie";
 
-import { APP_API_ENDPOINT } from "../../config";
-
+import { APP_API_ENDPOINT } from "@/config";
 import { AUTH_TOKEN_COOKIE } from "@/shared/utils/constants";
 
 // https://typescript.tv/best-practices/error-ts1196-catch-clause-variable-type-annotation/#Type-Guards
@@ -34,10 +33,10 @@ api.interceptors.request.use((config: AxiosRequestConfig) => {
 });
 
 /* ---- Base function to get data ---- */
-export const handleQuery = async <T, U>(config: {
+export const handleQuery = async <TResponse, TQuery>(config: {
   resourceUrl: string;
-  queryParams?: U;
-}): Promise<T> => {
+  queryParams?: TQuery;
+}): Promise<TResponse> => {
   try {
     const response = await api.request({
       method: "GET",
@@ -58,11 +57,11 @@ export const handleQuery = async <T, U>(config: {
 /* ---- Base function for Data mutation requests -> POST, PUT, PATCH, DELETE ---- */
 type MutationMethods = "POST" | "PUT" | "PATCH" | "DELETE";
 
-export const handleMutation = async <T, U>(config: {
+export const handleMutation = async <TResponse, TBody>(config: {
   resourceUrl: string;
   method: MutationMethods;
-  reqBody?: U;
-}): Promise<T> => {
+  reqBody?: TBody;
+}): Promise<TResponse> => {
   // Check if the passed method: POST, PUT, PATCH, DELETE
   if (!["POST", "PUT", "DELETE", "PATCH"].includes(config.method)) {
     return Promise.reject(new Error("Pass a valid method"));
