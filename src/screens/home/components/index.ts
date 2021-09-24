@@ -1,1 +1,1 @@
-export { default as TestComp } from "./TestComp/TestComp";
+export { default as TestComp } from "./TestComp";
