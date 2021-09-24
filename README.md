@@ -47,7 +47,7 @@
   │    ├── /pages (nextjs treats each page as route itself)
   │    ├── /tests
   │    │    ├── /e2e (end-to-end test-files)
-  │    │    ├── /test-results (end-to-end test generated screenshots or videos)
+  │    │    ├── /test-results (end-to-end test generated screenshots/videos)
   │    │    ├── /utils
   │    │    │    ├── /mocks (mock data and handlers for test using msw)
   │    │    │    ├── test-setup.tsx (setup custom reusable wrapper for tests)
