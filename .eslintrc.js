@@ -148,13 +148,25 @@ module.exports = {
           "index",
         ],
         pathGroups: [
-          { pattern: "@/screens/**", group: "internal", position: "after" },
+          {
+            pattern: "@public/**",
+            group: "internal",
+            position: "before",
+          },
           {
             pattern: "@/**",
             group: "internal",
             position: "before",
           },
+
+          { pattern: "@/screens/**", group: "internal", position: "after" },
+          { pattern: "@/modules/**", group: "internal", position: "after" },
         ],
+        alphabetize: {
+          order:
+            "asc" /* sort in ascending order. Options: ['ignore', 'asc', 'desc'] */,
+          caseInsensitive: true /* ignore case. Options: [true, false] */,
+        },
       },
     ],
     "import/extensions": [
