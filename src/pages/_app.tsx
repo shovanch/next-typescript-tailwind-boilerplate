@@ -5,7 +5,7 @@ import { NextPage } from "next";
 import NextNprogress from "nextjs-progressbar";
 
 import "@/shared/styles/globals.css";
-import { TWResponsiveIndicator } from "@/shared/libs";
+import { TWResponsiveIndicator } from "@/shared/components/libs";
 import { AppProviders } from "@/shared/contexts/app-providers";
 import { AuthProvider, AuthGuard } from "@/shared/contexts/auth.context";
 
@@ -15,7 +15,7 @@ export type NextApplicationPage = NextPage & {
   isPublicRoute?: boolean;
 };
 
-export default function MyApp(props: AppProps): JSX.Element {
+export function MyApp(props: AppProps): JSX.Element {
   const {
     Component,
     pageProps,

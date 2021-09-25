@@ -1,7 +1,7 @@
 /**
  * Displays the current tailwind viewport size
  */
-export default function TWResponsiveIndicator() {
+export function TWResponsiveIndicator(): JSX.Element | null {
   // Hidden except developement mode
   if (process.env.NODE_ENV !== "development") {
     return null;

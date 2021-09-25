@@ -133,6 +133,7 @@ module.exports = {
 
     // Import
     "import/prefer-default-export": 0,
+    "import/no-default-export": 1, // prefer named exports
     "import/order": [
       "error",
       {

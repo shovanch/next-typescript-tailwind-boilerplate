@@ -5,7 +5,7 @@ import { useAuthUser } from "@/shared/contexts/useState.context";
 import { useInput } from "@/shared/contexts/dispatch.context";
 import { UserResponse } from "@/types/api";
 
-export default function Input(): JSX.Element {
+export function Input(): JSX.Element {
   const postResult = useQuery<UserResponse>("post", () => fetchAuthUser());
 
   // const loginMutation = useMutation(
