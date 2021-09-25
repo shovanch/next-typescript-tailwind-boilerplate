@@ -6,7 +6,7 @@ const config: PlaywrightTestConfig = {
   testDir: "src/tests/e2e",
 
   // Store test screenshot or videos here, relative to the testDir path
-  outputDir: "../test-results",
+  outputDir: "../e2e-results",
 
   // Each test is given 30 seconds
   timeout: 30000,

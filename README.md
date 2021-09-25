@@ -34,8 +34,8 @@
   │    │    │    ├── _app.global.scss (*if needed)
   │    │    │    ├── _variables.global.scss (*if needed, declare css variables)
   │    │    │    ├── index.scss (*if needed, bundles and exports the global styles to be imported in root index.js)
-  │    ├── /screens (co-locates files that are used on a page only)
-  │    │    ├── /page (corresponds to routes from /pages folder)
+  │    ├── /modules (co-locates files that are used on a feature. by default maps 1:1 to page)
+  │    │    ├── /page (default: corresponds to routes from /pages folder)
   │    │    │    ├── /components
   │    │    │    │    ├── /Component
   │    │    │    │    │    ├── Component.tsx
