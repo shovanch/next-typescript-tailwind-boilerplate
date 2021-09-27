@@ -1,4 +1,7 @@
-/* eslint-disable global-require */
+/* eslint-disable */
+const defaultTheme = require("tailwindcss/defaultTheme");
+const colors = require("tailwindcss/colors");
+
 module.exports = {
   mode: "jit",
   purge: ["./src/**/*.{js,ts,jsx,tsx}"],
@@ -6,12 +9,21 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        sans: ["Noto Sans JP", "sans-serif"],
+        sans: ["Inter var", ...defaultTheme.fontFamily.sans],
+      },
+      colors: {
+        primary: colors.blue,
+        secondary: colors.red,
+        neutral: colors.coolGray,
       },
     },
   },
   variants: {
     extend: {},
   },
-  plugins: [require("@tailwindcss/forms")],
+  plugins: [
+    require("@tailwindcss/forms")({
+      strategy: "class",
+    }),
+  ],
 };

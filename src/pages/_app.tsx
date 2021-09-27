@@ -1,7 +1,5 @@
-import "@fontsource/noto-sans-jp";
-import type { AppProps } from "next/app";
-
 import { NextPage } from "next";
+import type { AppProps } from "next/app";
 import NextNprogress from "nextjs-progressbar";
 
 import "@/shared/styles/globals.css";
@@ -15,7 +13,7 @@ export type NextApplicationPage = NextPage & {
   isPublicRoute?: boolean;
 };
 
-export function MyApp(props: AppProps): JSX.Element {
+export default function MyApp(props: AppProps): JSX.Element {
   const {
     Component,
     pageProps,

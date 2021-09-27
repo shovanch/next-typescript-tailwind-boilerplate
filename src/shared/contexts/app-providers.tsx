@@ -1,8 +1,8 @@
+import { Toaster } from "react-hot-toast";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { ReactQueryDevtools } from "react-query/devtools";
 
-import { AuthUserProvider } from "@/shared/contexts/useState.context";
-import { InputValueProvider } from "@/shared/contexts/dispatch.context";
+import { AuthProvider } from "./auth.context";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -26,9 +26,12 @@ function ReactQueryClientProvider({
 function Providers({ children }: AppProvidersProps): JSX.Element {
   return (
     <>
-      <AuthUserProvider>
-        <InputValueProvider>{children}</InputValueProvider>
-      </AuthUserProvider>
+      <Toaster
+        toastOptions={{
+          duration: 5000,
+        }}
+      />
+      <AuthProvider>{children}</AuthProvider>
     </>
   );
 }

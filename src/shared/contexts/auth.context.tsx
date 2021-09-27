@@ -23,8 +23,8 @@
  * actual route push by authProvider functions
  */
 
-import React, { createContext, useContext, useEffect } from "react";
 import { useRouter } from "next/router";
+import React, { createContext, useContext, useEffect } from "react";
 import { useQuery } from "react-query";
 
 import { FullPageLoader } from "@/shared/components";

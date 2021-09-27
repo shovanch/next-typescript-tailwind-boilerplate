@@ -1,10 +1,12 @@
 /* eslint-disable */
 const withPlugins = require("next-compose-plugins");
+
 const withBundleAnalyzer = require("@next/bundle-analyzer")({
   enabled: process.env.ANALYZE === "true",
 });
 
 const nextConfig = {
+  // i18n,
   experimental: { esmExternals: true, scrollRestoration: true },
   reactStrictMode: true,
   target: "serverless",

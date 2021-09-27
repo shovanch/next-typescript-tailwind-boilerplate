@@ -1,7 +1,29 @@
-import { render, screen, userEvent } from "@/tests/utils/test-setup";
-import { server, rest } from "@/tests/utils/server";
+import router, { useRouter } from "next/router";
+
 import { APP_API_ENDPOINT } from "@/config";
-import Index from "@/pages/index";
+import Home from "@/pages/index";
+import { server, rest } from "@/tests/utils/server";
+import { render, screen, userEvent, waitFor } from "@/tests/utils/test-setup";
+
+jest.mock("next/dist/client/router", () => require("next-router-mock"));
+
+describe("Home page", () => {
+  it("should redirect to /login when user is not logged in", async () => {
+    server.use(
+      rest.get(`${APP_API_ENDPOINT}/user`, (req, res, ctx) =>
+        res(ctx.status(404), ctx.json({}))
+      )
+    );
+    // router.push("/");
+    render(<Home />);
+
+    await waitFor(() => {
+      expect(router).toMatchObject({
+        pathname: "/login",
+      });
+    });
+  });
+});
 
 describe("App", () => {
   it("renders a heading", () => {

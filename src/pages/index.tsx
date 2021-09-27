@@ -1,20 +1,17 @@
 import Image from "next/image";
-import Head from "next/head";
 
-import { Input } from "@/shared/components";
+import { Head } from "@/shared/components";
 
-export function Home(): JSX.Element {
+export default function Home(): JSX.Element {
   return (
     <>
-      <Head>
-        <title>TEST DEV</title>
-      </Head>
+      <Head title="Home" />
+
       <div className="flex flex-col items-center justify-center py-2 min-h-screen">
-        <Image alt="me" height="32" src="/images/stabiz-logo.png" width="150" />
-        <Input />
+        <p>Hello</p>
       </div>
     </>
   );
 }
 
-Home.publicRoute = true;
+Home.isPublicRoute = true;

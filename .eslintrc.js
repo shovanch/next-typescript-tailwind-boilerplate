@@ -47,6 +47,13 @@ module.exports = {
         "plugin:testing-library/react",
       ],
     },
+    {
+      // Next.js, storybook needs default exports for pages and API points
+      files: ["src/pages/**/*", "**/*/*.stories.@(js|jsx|ts|tsx)"],
+      rules: {
+        "import/no-default-export": "off",
+      },
+    },
   ],
   rules: {
     // Eslint base
@@ -139,15 +146,17 @@ module.exports = {
       {
         "newlines-between": "always",
         groups: [
-          "type",
           "builtin",
           "external",
           "internal",
           "parent",
           "sibling",
           "index",
+          "object",
         ],
         pathGroups: [
+          { pattern: "@/screens/**", group: "internal", position: "after" },
+          { pattern: "@/modules/**", group: "internal", position: "after" },
           {
             pattern: "@public/**",
             group: "internal",
@@ -158,9 +167,6 @@ module.exports = {
             group: "internal",
             position: "before",
           },
-
-          { pattern: "@/screens/**", group: "internal", position: "after" },
-          { pattern: "@/modules/**", group: "internal", position: "after" },
         ],
         alphabetize: {
           order:
