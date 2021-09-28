@@ -1,19 +1,10 @@
-import { render, RenderOptions } from "@testing-library/react";
-import { ComponentType, ReactElement } from "react";
-import { QueryClient, QueryClientProvider } from "react-query";
-import { RouterContext } from "next/dist/shared/lib/router-context";
+import { render as rtlRender, RenderResult } from "@testing-library/react";
 import { useRouter } from "next-router-mock";
+import { RouterContext } from "next/dist/shared/lib/router-context";
+import { ReactElement } from "react";
+import { QueryClient, QueryClientProvider } from "react-query";
 
 import { Providers } from "@/shared/contexts/app-providers";
-
-const createTestQueryClient = () =>
-  new QueryClient({
-    defaultOptions: {
-      queries: {
-        retry: false,
-      },
-    },
-  });
 
 // export const MockMemoryRouter = ({ children }): JSX.Element => {
 //   return (
@@ -24,62 +15,42 @@ const createTestQueryClient = () =>
 // };
 
 export function AllProviders({
+  client,
   children,
 }: {
   children: React.ReactNode;
+  client: QueryClient;
 }): JSX.Element {
-  const testQueryClient = createTestQueryClient();
-
   return (
-    <QueryClientProvider client={testQueryClient}>
+    <QueryClientProvider client={client}>
       <Providers>{children}</Providers>
     </QueryClientProvider>
   );
 }
 
-// const customRender = (
-//   ui: ReactElement,
-//   options?: Omit<RenderOptions, "wrapper">
-// ) => render(ui, { wrapper: AllTheProviders, ...options });
+// @see https://stackoverflow.com/a/68461339/9640026
+const testQueryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      retry: false,
+    },
+  },
+});
 
-// https://github.com/testing-library/react-testing-library/issues/634#issuecomment-613168127
-// const customRender = (
-//   ui: JSX.Element,
-//   options?: Omit<RenderOptions, "queries">
-// ) => render(ui, { wrapper: AllTheProviders, ...options });
-
-function wrappedRender(
+const render = (
   ui: ReactElement,
-  options?: Omit<RenderOptions, "wrapper">
-) {
-  return render(ui, {
-    wrapper: AllProviders as ComponentType,
+  { client = testQueryClient, ...options } = {}
+): RenderResult =>
+  rtlRender(ui, {
+    wrapper: ({ children }) => (
+      <AllProviders client={client}>{children}</AllProviders>
+    ),
     ...options,
   });
-}
-
-// export function renderWithClient(ui: React.ReactElement) {
-//   const testQueryClient = createTestQueryClient();
-
-//   return
-//   const { rerender, ...result } = render(ui, { }
-//     <QueryClientProvider client={testQueryClient}>{ui}</QueryClientProvider>
-//   );
-
-//   return {
-//     ...result,
-//     rerender: (rerenderUi: React.ReactElement) =>
-//       rerender(
-//         <QueryClientProvider client={testQueryClient}>
-//           {rerenderUi}
-//         </QueryClientProvider>
-//       ),
-//   };
-// }
 
 // re-export everything
 export * from "@testing-library/react";
 export { default as userEvent } from "@testing-library/user-event";
 
-// override render method
-export { wrappedRender as render };
+// override React Testing Library's render with our own
+export { render };
